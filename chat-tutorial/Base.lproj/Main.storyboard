@@ -151,7 +151,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="screen_name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0As-Nz-ds1">
-                                <rect key="frame" x="79" y="139" width="256" height="60"/>
+                                <rect key="frame" x="20" y="155" width="374" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="40"/>
                                 <nil key="textColor"/>
@@ -175,6 +175,13 @@
                                     <action selector="StartTalk:" destination="rzz-pj-MLE" eventType="touchUpInside" id="uak-fh-8Qd"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your name is" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="auP-di-OIF">
+                                <rect key="frame" x="118" y="102" width="178" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="27"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.89451789859999997" green="0.91509765389999997" blue="0.31916964050000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="wFf-El-7fa"/>
@@ -189,19 +196,65 @@
             <point key="canvasLocation" x="3724.6376811594205" y="-576.35869565217399"/>
         </scene>
         <!--Talk View Controller-->
-        <scene sceneID="bnL-NO-lGz">
+        <scene sceneID="t9R-mL-e4l">
             <objects>
-                <viewController storyboardIdentifier="Talk" id="Vbf-ho-dH0" customClass="TalkViewController" customModule="chat_tutorial" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="rEX-5g-gAb">
+                <viewController storyboardIdentifier="Talk" id="rxV-60-swO" customClass="TalkViewController" customModule="chat_tutorial" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DyN-Qh-ooN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aRR-6V-qSa">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="676"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.89451789859999997" green="0.91509765389999997" blue="0.31916964050000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Message" rowHeight="70" id="MgF-8K-5Ih" customClass="MessageTableViewCell" customModule="chat_tutorial" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MgF-8K-5Ih" id="JIM-jf-Ubd">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2If-FH-Cxm">
+                                                    <rect key="frame" x="15" y="0.0" width="134" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q0c-cO-URj">
+                                                    <rect key="frame" x="15" y="29" width="384" height="41"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.89451789859999997" green="0.91509765389999997" blue="0.31916964050000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="MessageLabel" destination="Q0c-cO-URj" id="4py-1Q-fcH"/>
+                                            <outlet property="NameLabel" destination="2If-FH-Cxm" id="SIN-ug-5hu"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VZY-rC-wfs">
+                                <rect key="frame" x="0.0" y="674" width="414" height="62"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="30"/>
+                                <state key="normal" title="Message">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="0.89451789859999997" green="0.91509765389999997" blue="0.31916964050000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="tr0-Gy-sMu"/>
+                        <viewLayoutGuide key="safeArea" id="XdD-ec-AxL"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="awr-fO-jzf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RME-hA-Og3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4380" y="-576"/>
+            <point key="canvasLocation" x="4443.4782608695659" y="-575.54347826086962"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="fNg-ks-y8v">
@@ -217,7 +270,7 @@
                     </tabBar>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="image" keyPath="SelectedImage" value="tabBarController:jkm-h5-W4T:value"/>
-                        <userDefinedRuntimeAttribute type="image" keyPath="SelectedImage" value="B29E7887-2739-4E5E-ABFB-28F1F127E818"/>
+                        <userDefinedRuntimeAttribute type="image" keyPath="SelectedImage" value="87975EFC-7809-45B4-BAFB-7E7E4728A722"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="fSm-vT-UMZ" kind="relationship" relationship="viewControllers" id="Og4-LP-aOd"/>
@@ -263,6 +316,13 @@
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="26"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="please enter screen_name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RjM-LT-qvK">
+                                <rect key="frame" x="10" y="386" width="394" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="30"/>
+                                <color key="textColor" red="1" green="0.33601015880000001" blue="0.19439690100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.89451789855957031" green="0.91509765386581421" blue="0.31916964054107666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="UsJ-DJ-GCC"/>
@@ -273,6 +333,7 @@
                     <connections>
                         <outlet property="ScreeName" destination="zP5-J4-AWY" id="HNV-g0-5yR"/>
                         <outlet property="ScreenNameTextField" destination="zQF-5a-j8D" id="z2v-oe-kEJ"/>
+                        <outlet property="errorLabel" destination="RjM-LT-qvK" id="VQd-ru-Rfn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wrc-T9-oDQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -316,7 +377,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="B29E7887-2739-4E5E-ABFB-28F1F127E818" width="30" height="30">
+        <image name="87975EFC-7809-45B4-BAFB-7E7E4728A722" width="30" height="30">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGVVZYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK8QEgcI
 ExQZHh8jJCsuMTtDR0tPUlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdz

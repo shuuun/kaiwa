@@ -24,7 +24,8 @@
 		7BD6DC3920035EBD002624F2 /* Home.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BD6DC3020035EB2002624F2 /* Home.png */; };
 		7BD6DC3A20035EC3002624F2 /* Config.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BD6DC3220035EB2002624F2 /* Config.png */; };
 		7BD6DC3E20035FBB002624F2 /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD6DC3D20035FBB002624F2 /* MypageViewController.swift */; };
-		7BD6DC4220048889002624F2 /* TalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD6DC4120048889002624F2 /* TalkViewController.swift */; };
+		7BD6DC46200D9C10002624F2 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD6DC45200D9C10002624F2 /* MessageTableViewCell.swift */; };
+		7BD6DC48200D9E1E002624F2 /* TalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD6DC47200D9E1E002624F2 /* TalkViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,7 +49,8 @@
 		7BD6DC3120035EB2002624F2 /* Config@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Config@2x.png"; sourceTree = "<group>"; };
 		7BD6DC3220035EB2002624F2 /* Config.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Config.png; sourceTree = "<group>"; };
 		7BD6DC3D20035FBB002624F2 /* MypageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewController.swift; sourceTree = "<group>"; };
-		7BD6DC4120048889002624F2 /* TalkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkViewController.swift; sourceTree = "<group>"; };
+		7BD6DC45200D9C10002624F2 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
+		7BD6DC47200D9E1E002624F2 /* TalkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkViewController.swift; sourceTree = "<group>"; };
 		C09219D22FC9C113314F5475 /* Pods-chat-tutorial.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chat-tutorial.release.xcconfig"; path = "Pods/Target Support Files/Pods-chat-tutorial/Pods-chat-tutorial.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -104,11 +106,12 @@
 			children = (
 				7BD6DC2C20035EB2002624F2 /* iconImage */,
 				7BD6DC2420034886002624F2 /* SignupViewController.swift */,
+				7BD6DC45200D9C10002624F2 /* MessageTableViewCell.swift */,
 				7BD6DC3D20035FBB002624F2 /* MypageViewController.swift */,
-				7BD6DC4120048889002624F2 /* TalkViewController.swift */,
 				7BC8026E2002784F0091577A /* HomeViewController.swift */,
 				7BA6ADE5200274D9005C8652 /* AppDelegate.swift */,
 				7BA6ADE9200274DA005C8652 /* Main.storyboard */,
+				7BD6DC47200D9E1E002624F2 /* TalkViewController.swift */,
 				7BD6DC2820034C5D002624F2 /* ConfigViewController.swift */,
 				7BD6DC2620034955002624F2 /* TopViewController.swift */,
 				7BA6ADEC200274DA005C8652 /* Assets.xcassets */,
@@ -219,10 +222,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-chat-tutorial/Pods-chat-tutorial-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/JSQMessagesViewController/JSQMessagesViewController.framework",
-				"${BUILT_PRODUCTS_DIR}/JSQSystemSoundPlayer/JSQSystemSoundPlayer.framework",
-				"${BUILT_PRODUCTS_DIR}/KRActivityIndicatorView/KRActivityIndicatorView.framework",
-				"${BUILT_PRODUCTS_DIR}/KRProgressHUD/KRProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -230,10 +230,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQMessagesViewController.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQSystemSoundPlayer.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KRActivityIndicatorView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KRProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -267,11 +264,11 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-chat-tutorial/Pods-chat-tutorial-resources.sh",
-				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseAuthUI.bundle,
-				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseFacebookAuthUI.bundle,
-				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseGoogleAuthUI.bundle,
-				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebasePhoneAuthUI.bundle,
-				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseTwitterAuthUI.bundle,
+				"$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseAuthUI.bundle",
+				"$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseFacebookAuthUI.bundle",
+				"$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseGoogleAuthUI.bundle",
+				"$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebasePhoneAuthUI.bundle",
+				"$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseTwitterAuthUI.bundle",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterShareExtensionUIResources.bundle",
@@ -292,12 +289,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BD6DC46200D9C10002624F2 /* MessageTableViewCell.swift in Sources */,
 				7BD6DC2720034955002624F2 /* TopViewController.swift in Sources */,
 				7BA6ADE6200274D9005C8652 /* AppDelegate.swift in Sources */,
 				7BC8026F2002784F0091577A /* HomeViewController.swift in Sources */,
-				7BD6DC4220048889002624F2 /* TalkViewController.swift in Sources */,
 				7BD6DC3E20035FBB002624F2 /* MypageViewController.swift in Sources */,
 				7BD6DC2920034C5D002624F2 /* ConfigViewController.swift in Sources */,
+				7BD6DC48200D9E1E002624F2 /* TalkViewController.swift in Sources */,
 				7BD6DC2520034886002624F2 /* SignupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

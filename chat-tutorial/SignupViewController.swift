@@ -19,6 +19,7 @@ class SignupViewController: UIViewController {
     var handle: AuthStateDidChangeListenerHandle?
     var uid: String = ""
     var get_email: String = ""
+
     
     @IBOutlet weak var sign_up: UIButton!
     @IBOutlet weak var sign_in: UIButton!
@@ -62,6 +63,7 @@ class SignupViewController: UIViewController {
                     self.uid = user.uid
                     self.get_email = user.email!
                 }
+                
                 self.ref.child("Users/\(self.uid)/").setValue(["screen_name": "noname", "email": self.get_email])
                 let nextView = self.storyboard?.instantiateViewController(withIdentifier: "Tabbar")
                 self.present(nextView!,animated: true, completion: nil)

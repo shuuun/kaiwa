@@ -13,6 +13,11 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var deiceToken:String?
+    var roomId:String?
+    var newRoomId:String?
+    var targetId:String?
+    var chatStartFlg:Bool?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {

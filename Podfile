@@ -6,9 +6,8 @@ target 'chat-tutorial' do
   use_frameworks!
   pod 'Firebase'
   pod 'Firebase/Database'
-  pod 'JSQMessagesViewController'
   pod 'Firebase/Auth'
-  pod 'KRProgressHUD'
-  # Pods for chat-tutorial
+  pod 'SVProgressHUD'
+# Pods for chat-tutorial
 
 end

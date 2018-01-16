@@ -13,6 +13,7 @@ class MypageViewController: UIViewController {
 
     @IBOutlet weak var ScreeName: UILabel!
     @IBOutlet weak var ScreenNameTextField: UITextField!
+    @IBOutlet weak var errorLabel: UILabel!
     var ref: DatabaseReference!
     var screenname: String = ""
     var uid: String = ""
@@ -20,10 +21,12 @@ class MypageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        errorLabel.isHidden = true
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -35,21 +38,25 @@ class MypageViewController: UIViewController {
     
     @IBAction func updateButton(_ sender: Any) {
         screenname = ScreenNameTextField.text!
-        self.ref = Database.database().reference()
-        let User = Auth.auth().currentUser
-        if let user = User {
-            self.uid = user.uid
-            self.email = user.email!
+        if screenname == "" {
+            errorLabel.isHidden = false
+            return
+        } else {
+            self.ref = Database.database().reference()
+            let User = Auth.auth().currentUser
+            if let user = User {
+                self.uid = user.uid
+                self.email = user.email!
+            }
+            self.ref.child("Users/\(self.uid)/").setValue(["screen_name": screenname])
+            
+            let alert = UIAlertController(title: screenname, message: "Name changed!", preferredStyle: UIAlertControllerStyle.alert)
+            let action1 = UIAlertAction(title: "close", style: UIAlertActionStyle.default, handler: {
+                (action: UIAlertAction!) in
+            })
+            alert.addAction(action1)
+            self.present(alert, animated: true, completion: nil)
         }
-        self.ref.child("Users/\(self.uid)/").setValue(["screen_name": screenname])
-        
-        let alert = UIAlertController(title: screenname, message: "Name changed!", preferredStyle: UIAlertControllerStyle.alert)
-        let action1 = UIAlertAction(title: "close", style: UIAlertActionStyle.default, handler: {
-            (action: UIAlertAction!) in
-        })
-        alert.addAction(action1)        
-        self.present(alert, animated: true, completion: nil)
-
     }
 
 }
