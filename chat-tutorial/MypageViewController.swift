@@ -48,7 +48,7 @@ class MypageViewController: UIViewController {
                 self.uid = user.uid
                 self.email = user.email!
             }
-            self.ref.child("Users/\(self.uid)/").setValue(["screen_name": screenname])
+            self.ref.child("Users/\(self.uid)/").updateChildValues(["screen_name": screenname])
             
             let alert = UIAlertController(title: screenname, message: "Name changed!", preferredStyle: UIAlertControllerStyle.alert)
             let action1 = UIAlertAction(title: "close", style: UIAlertActionStyle.default, handler: {

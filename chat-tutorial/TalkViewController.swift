@@ -12,10 +12,11 @@ import SVProgressHUD
 
 class TalkViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var SendName: UILabel!
     let app:AppDelegate =
         (UIApplication.shared.delegate as! AppDelegate)
-    var userRef = Database.database().reference().child("Users")
-    var roomRef = Database.database().reference().child("Rooms")
+    let userRef = Database.database().reference().child("Users")
+    let roomRef = Database.database().reference().child("Rooms")
     var uid: String = (Auth.auth().currentUser?.uid)!
 
     override func viewDidLoad() {
@@ -26,21 +27,14 @@ class TalkViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         getRoom()
     }
-    
-    
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func getRoom() {
         let user = [
             "inRoom": "0",
             "waitingFlg": "0"
         ]
         
-        userRef.child("\(self.uid)/").setValue(user)
+        userRef.child("\(self.uid)/").updateChildValues(user)
         
         userRef.queryOrdered(byChild: "waitingFlg").queryEqual(toValue: "1").observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
@@ -90,6 +84,7 @@ class TalkViewController: UIViewController, UITableViewDelegate, UITableViewData
         SVProgressHUD.dismiss()
         SVProgressHUD.showSuccess(withStatus: "マッチングしました！")
         self.app.chatStartFlg = true
+        
         roomRef.child(self.app.roomId!).queryLimited(toLast: 100).observe(DataEventType.childAdded, with: { (snapshot) in
             let getName = self.userRef.child("Users/\(self.uid)/screen_name")
             getName.observe(.value, with: {(DataSnapshot) in
@@ -115,12 +110,12 @@ class TalkViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         
         print("チャット開始するユーザId\(self.app.targetId!)")
-//        getNewRoomId()
+        getNewRoomId()
     }
     
     var count: Int = 1
     
-    func getNewroomId() {
+    func getNewRoomId() {
         Database.database().reference().child("roomKeyNum").observeSingleEvent(of: .value, with: { (snapshot) in
             if !(snapshot.value is NSNull) {
                 self.count = (snapshot.value as! Int) + 1
@@ -128,7 +123,7 @@ class TalkViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             Database.database().reference()
                 .child("roomKeyNem")
-                .child("self.count")
+                .child("\(self.count)")
             self.app.newRoomId = String(self.count)
             self.updateEachUserInfo()
         }) { (error) in

@@ -8,6 +8,7 @@ target 'chat-tutorial' do
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
   pod 'SVProgressHUD'
+  pod "SlackTextViewController"
 # Pods for chat-tutorial
 
 end

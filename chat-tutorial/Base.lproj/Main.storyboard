@@ -204,7 +204,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aRR-6V-qSa">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="676"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="614"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.89451789859999997" green="0.91509765389999997" blue="0.31916964050000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
@@ -240,10 +240,11 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VZY-rC-wfs">
-                                <rect key="frame" x="0.0" y="674" width="414" height="62"/>
+                                <rect key="frame" x="0.0" y="611" width="414" height="62"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.99607843159999998" green="0.99607843159999998" blue="0.98823529480000005" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="30"/>
-                                <state key="normal" title="Message">
+                                <state key="normal" title="Type Message!">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
@@ -270,7 +271,7 @@
                     </tabBar>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="image" keyPath="SelectedImage" value="tabBarController:jkm-h5-W4T:value"/>
-                        <userDefinedRuntimeAttribute type="image" keyPath="SelectedImage" value="87975EFC-7809-45B4-BAFB-7E7E4728A722"/>
+                        <userDefinedRuntimeAttribute type="image" keyPath="SelectedImage" value="5A997E18-9A92-4F19-A3AC-30191586F7C5"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="fSm-vT-UMZ" kind="relationship" relationship="viewControllers" id="Og4-LP-aOd"/>
@@ -377,7 +378,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="87975EFC-7809-45B4-BAFB-7E7E4728A722" width="30" height="30">
+        <image name="5A997E18-9A92-4F19-A3AC-30191586F7C5" width="30" height="30">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGVVZYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK8QEgcI
 ExQZHh8jJCsuMTtDR0tPUlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdz
