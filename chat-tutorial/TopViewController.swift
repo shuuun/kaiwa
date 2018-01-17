@@ -12,12 +12,15 @@ import Firebase
 class TopViewController: UIViewController {
     
     @IBOutlet weak var screen_name: UILabel!
+    let app:AppDelegate =
+        (UIApplication.shared.delegate as! AppDelegate)
     var screenname: String = ""
     var uid: String = ""
     var ref: DatabaseReference!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.app.roomId = "0"
         navigationController?.setNavigationBarHidden(true, animated: false)
         // Do any additional setup after loading the view.
     }
@@ -38,6 +41,7 @@ class TopViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.app.roomId = "0"
         navigationController?.setNavigationBarHidden(true, animated: false)
         self.uid = (Auth.auth().currentUser?.uid)!
         self.ref = Database.database().reference()

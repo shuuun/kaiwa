@@ -25,7 +25,6 @@
 		7BD6DC3A20035EC3002624F2 /* Config.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BD6DC3220035EB2002624F2 /* Config.png */; };
 		7BD6DC3E20035FBB002624F2 /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD6DC3D20035FBB002624F2 /* MypageViewController.swift */; };
 		7BD6DC48200D9E1E002624F2 /* TalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD6DC47200D9E1E002624F2 /* TalkViewController.swift */; };
-		7BD6DC4A200E54D2002624F2 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD6DC49200E54D2002624F2 /* MessageTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,7 +49,6 @@
 		7BD6DC3220035EB2002624F2 /* Config.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Config.png; sourceTree = "<group>"; };
 		7BD6DC3D20035FBB002624F2 /* MypageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewController.swift; sourceTree = "<group>"; };
 		7BD6DC47200D9E1E002624F2 /* TalkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkViewController.swift; sourceTree = "<group>"; };
-		7BD6DC49200E54D2002624F2 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		C09219D22FC9C113314F5475 /* Pods-chat-tutorial.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chat-tutorial.release.xcconfig"; path = "Pods/Target Support Files/Pods-chat-tutorial/Pods-chat-tutorial.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -112,7 +110,6 @@
 				7BA6ADE9200274DA005C8652 /* Main.storyboard */,
 				7BD6DC47200D9E1E002624F2 /* TalkViewController.swift */,
 				7BD6DC2820034C5D002624F2 /* ConfigViewController.swift */,
-				7BD6DC49200E54D2002624F2 /* MessageTableViewCell.swift */,
 				7BD6DC2620034955002624F2 /* TopViewController.swift */,
 				7BA6ADEC200274DA005C8652 /* Assets.xcassets */,
 				7BA6ADEE200274DA005C8652 /* LaunchScreen.storyboard */,
@@ -223,7 +220,6 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/SlackTextViewController/SlackTextViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -232,7 +228,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SlackTextViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -296,7 +291,6 @@
 				7BC8026F2002784F0091577A /* HomeViewController.swift in Sources */,
 				7BD6DC3E20035FBB002624F2 /* MypageViewController.swift in Sources */,
 				7BD6DC2920034C5D002624F2 /* ConfigViewController.swift in Sources */,
-				7BD6DC4A200E54D2002624F2 /* MessageTableViewCell.swift in Sources */,
 				7BD6DC48200D9E1E002624F2 /* TalkViewController.swift in Sources */,
 				7BD6DC2520034886002624F2 /* SignupViewController.swift in Sources */,
 			);

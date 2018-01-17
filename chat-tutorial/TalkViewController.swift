@@ -10,32 +10,72 @@ import UIKit
 import Firebase
 import SVProgressHUD
 
-class TalkViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TalkViewController: UIViewController, UITextFieldDelegate {
     
-    @IBOutlet weak var SendName: UILabel!
+    @IBOutlet weak var TextView: UITextView!
+    @IBOutlet weak var TypeMessage: UITextField!
+
+    let ScreenSize = UIScreen.main.bounds.size
     let app:AppDelegate =
         (UIApplication.shared.delegate as! AppDelegate)
-    let userRef = Database.database().reference().child("Users")
-    let roomRef = Database.database().reference().child("Rooms")
-    var uid: String = (Auth.auth().currentUser?.uid)!
-
+    var ref: DatabaseReference!
+    var uid: String = ""
+    let owner: String = "owner"
+    var screen_name: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        ref = Database.database().reference()
+        
+        TypeMessage.delegate = self
         navigationController?.setNavigationBarHidden(false, animated: false)
         SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.dark)
         SVProgressHUD.show(withStatus: "チャット相手をさがしています")
         
         getRoom()
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let roomRef = ref.child("Rooms")
+        TextView.isEditable = false
+        roomRef.child(self.app.roomId!).removeValue()
+        self.uid = (Auth.auth().currentUser?.uid)!
+        let getPlace = ref.child("Users/\(self.uid)/screen_name")
+        getPlace.observe(.value, with: {(DataSnapshot) in
+            self.screen_name = (DataSnapshot.value! as AnyObject).description
+        })
+    }
+    
+    @IBAction func TapClose(_ sender: Any) {
+        self.view.endEditing(true)
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        TypeMessage.resignFirstResponder()
+        return true
+    }
+    
+    @IBAction func SendMessage(_ sender: Any) {
+        let userRef = ref.child("Users")
+        let roomRef = ref.child("Rooms")
+        let getPlace = userRef.child("\(self.uid)/screen_name")
+        getPlace.observe(.value, with: {(DataSnapshot) in
+            self.screen_name = (DataSnapshot.value! as AnyObject).description
+        })
+        let messageData = ["from": self.screen_name, "text": TypeMessage.text!] as [String : Any]
+        print(self.screen_name)
+        print(messageData)
+        roomRef.child(self.app.roomId!).child("message").childByAutoId().setValue(messageData)
+        TypeMessage.text = ""
+        self.view.endEditing(true)
+    }
+    
     func getRoom() {
+        let userRef = ref.child("Users")
         let user = [
             "inRoom": "0",
             "waitingFlg": "0"
         ]
-        
         userRef.child("\(self.uid)/").updateChildValues(user)
-        
         userRef.queryOrdered(byChild: "waitingFlg").queryEqual(toValue: "1").observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
             
@@ -47,7 +87,7 @@ class TalkViewController: UIViewController, UITableViewDelegate, UITableViewData
                     self.createRoom(value: value as! Dictionary<AnyHashable, Any>)
                 }
             } else {
-                self.userRef.child(self.uid).updateChildValues(["waitingFlg": "1"])
+                userRef.child(self.uid).updateChildValues(["waitingFlg": "1"])
                 self.checkMyWaitingFlg();
             }
         })
@@ -55,6 +95,7 @@ class TalkViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func checkMyWaitingFlg() {
+        let userRef = ref.child("Users")
         userRef.child(self.uid).observe(DataEventType.childChanged, with: { (snapshot) in
             print(snapshot)
             let snapshotValue = snapshot.value as! String
@@ -67,42 +108,44 @@ class TalkViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func getJoinRoom() {
+        let userRef = ref.child("Users")
+//        let roomRef = ref.child("Rooms")
         userRef.child(self.uid).child("inRoom").observeSingleEvent(of: .value, with: { (snapshot) in
             let snapshotValue = snapshot.value as! String
             self.app.roomId = snapshotValue
-            
             if self.app.roomId != "0" {
                 print("roomId→ \(self.app.roomId!)")
-                print("チャットを開始します")
                 self.getMessages()
             }
         })
     }
     
     func getMessages() {
-        var screen_name: String = ""
+        let roomRef = ref.child("Rooms")
         SVProgressHUD.dismiss()
         SVProgressHUD.showSuccess(withStatus: "マッチングしました！")
         self.app.chatStartFlg = true
-        
-        roomRef.child(self.app.roomId!).queryLimited(toLast: 100).observe(DataEventType.childAdded, with: { (snapshot) in
-            let getName = self.userRef.child("Users/\(self.uid)/screen_name")
-            getName.observe(.value, with: {(DataSnapshot) in
-                screen_name = (DataSnapshot.value! as AnyObject).description
-            })
-            let snapshotValue = snapshot.value as! NSDictionary
-            let text = snapshotValue["message"] as! String
-            let message = [
-                "from": screen_name,
-                "text": text
-            ]
-            self.roomRef.child(self.app.roomId!).setValue(message)
-            
+        print("チャットを開始します")
+       
+        roomRef.child(self.app.roomId!).child("message").observe(.childAdded, with: { (snapshot) -> Void in
+            let from = String(describing: snapshot.childSnapshot(forPath: "from").value!)
+            let text = String(describing: snapshot.childSnapshot(forPath: "text").value!)
+            print(from)
+            print(text)
+            let result = "\(self.TextView.text!)\n\(from): \(text)"
+            print(result)
+            self.TextView.text = result
         })
+        //                let snapshotValue = snapshot.value as! [String: AnyObject]
+        //                print(snapshotValue)
+        //                let from = snapshotValue["from"] as! String
+        //                let text = snapshotValue["text"] as! String
+        //                self.TextView.text = "\(self.TextView.text)\n \(from): \(text)"
+
     }
     
     func createRoom(value: Dictionary<AnyHashable, Any>) {
-        for (key,value) in value {
+        for (key,val) in value {
             if key as! String != self.uid {
                 print("待機中のユーザーId(key)")
                 self.app.targetId = key as? String
@@ -132,6 +175,7 @@ class TalkViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func updateEachUserInfo() {
+        let userRef = ref.child("Users")
         self.app.roomId = self.app.newRoomId
         print (self.app.roomId!)
         print (self.app.newRoomId!)
@@ -145,12 +189,16 @@ class TalkViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        let roomRef = ref.child("Rooms")
+        roomRef.child(self.app.roomId!).removeValue()
         print("ViewController/viewWillDisappear/別の画面に遷移する直前")
         
     }
     
     
     override func viewDidDisappear(_ animated: Bool) {
+        let userRef = ref.child("Users")
+        let roomRef = ref.child("Rooms")
         super.viewDidDisappear(animated)
         print("ViewController/viewDidDisappear/別の画面に遷移した直後")
         
@@ -159,29 +207,11 @@ class TalkViewController: UIViewController, UITableViewDelegate, UITableViewData
         SVProgressHUD.dismiss()
         if(self.app.roomId != "0"){
             let endMsg = "~相手が退出したよ!!~"
+            roomRef.child(self.app.roomId!).child("message").updateChildValues(["from": self.owner,
+                                                                                 "text": endMsg
+                ])
             self.app.roomId = "0"
         }
     }
     
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        return UITableViewCell()
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
